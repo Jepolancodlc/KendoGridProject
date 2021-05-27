@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -19,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     GridModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

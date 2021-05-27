@@ -4,12 +4,22 @@ import { State, process } from '@progress/kendo-data-query';
 import * as data from './puestos.json'
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 
+//Icons Imports
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  //Lista iconos
+  icSearch = faSearch;
+
+
+
+  //
   public gridView: GridDataResult;
   public datos: any[] = (data as any).default;
   private popupRef: PopupRef;
