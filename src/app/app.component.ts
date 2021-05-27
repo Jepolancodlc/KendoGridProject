@@ -1,6 +1,6 @@
 import { Component, ElementRef, TemplateRef } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
-import { State, process } from '@progress/kendo-data-query';
+import { State, process, GroupDescriptor } from '@progress/kendo-data-query';
 import * as data from './puestos.json'
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -21,14 +21,16 @@ export class AppComponent {
   icAgruparCol = faObjectGroup;
   icAddPuesto = faPlusCircle;
   public gridView: GridDataResult;
-  public datos: any[] = (data as any).default;
+  private datos: any[] = (data as any).default;
   private popupRef: PopupRef;
   public state: State = {
     skip: 0,
-    take: 15
+    take: 15,
+    group: []
   };
-  public columns: string[] = ["ID", "Name", "Category"];
-  public hiddenColumns: string[] = [];
+  private columns: string[] = ["ID", "Name", "Category"];
+  private hiddenColumns: string[] = [];
+  public groupable: boolean = false;
 
   constructor(private popupService: PopupService) {
     this.loadDatos();
@@ -75,6 +77,16 @@ export class AppComponent {
     } else {
       hiddenColumns.splice(hiddenColumns.indexOf(columnName), 1);
     }
+  }
+  /////
+  //Grouping
+  public isGroupable(): void {
+
+    if (this.groupable === false) {
+      this.state.group.splice(0, this.state.group.length)
+    }
+
+    this.groupable = !this.groupable;
   }
 
 

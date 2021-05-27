@@ -1,7 +1,7 @@
 <div class="center">
   <kendo-grid [data]="gridView" [resizable]="true" [reorderable]="true" [height]="500" [sortable]="{mode: 'multiple'}"
-    [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip" [pageable]="true"
-    (dataStateChange)="dataStateChange($event)">
+    [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip" [pageable]="true" [groupable]="groupable"
+    enabled="groupable" [group]="state.group" (dataStateChange)="dataStateChange($event)">
 
     <ng-template kendoGridToolbarTemplate>
 
@@ -21,7 +21,7 @@
         </div>
 
         <div>
-          <button matTooltip="Agrupar columnas">
+          <button matTooltip="Agrupar columnas" (click)="isGroupable()">
             <fa-icon [icon]="icAgruparCol"></fa-icon>
           </button>
         </div>
