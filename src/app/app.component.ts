@@ -26,12 +26,13 @@ export class AppComponent {
   public state: State = {
     skip: 0,
     take: 15,
-    group: []
+    group: [],
+
   };
   private columns: string[] = ["ID", "Name", "Category"];
   private hiddenColumns: string[] = [];
   public groupable: boolean = false;
-
+  public buscador: boolean = false;
   constructor(private popupService: PopupService) {
     this.loadDatos();
   }
@@ -88,6 +89,5 @@ export class AppComponent {
 
     this.groupable = !this.groupable;
   }
-
 
 }

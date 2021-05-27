@@ -1,21 +1,29 @@
 <div class="center">
   <kendo-grid [data]="gridView" [resizable]="true" [reorderable]="true" [height]="500" [sortable]="{mode: 'multiple'}"
     [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip" [pageable]="true" [groupable]="groupable"
-    enabled="groupable" [group]="state.group" (dataStateChange)="dataStateChange($event)">
+    filterable="menu" [filter]="state.filter" enabled="groupable" [group]="state.group"
+    (dataStateChange)="dataStateChange($event)">
 
     <ng-template kendoGridToolbarTemplate>
 
       <div>
-        <button matTooltip="Nuevo puesto">
+        <button matTooltip="Nuevo puesto" #newPuesto (click)="togglePopup(newPuesto, newPuestoTemp)">
           <fa-icon [icon]="icAddPuesto"></fa-icon>
         </button>
+
+        <ng-template #newPuestoTemp>
+          <div> Hola0</div>
+          <div> Hola1</div>
+        </ng-template>
       </div>
 
       <kendo-grid-spacer></kendo-grid-spacer>
+      <input class="search-box" placeholder="Search in all columns..." kendoTextBox (input)="dataStateChanges($event)"
+        *ngIf="buscador == true" />
 
       <div class="gridHeader">
         <div>
-          <button matTooltip="Buscar puesto">
+          <button matTooltip="Buscar puesto" (click)="buscador = !buscador">
             <fa-icon [icon]="icSearch"></fa-icon>
           </button>
         </div>
@@ -32,11 +40,11 @@
         <kendo-grid-excel fileName="Puestos.xlsx"></kendo-grid-excel>
 
         <div>
-          <button #showCol (click)="togglePopup(showCol, template)" matTooltip="Ocultar columnas">
+          <button #showCol (click)="togglePopup(showCol, showColTemp)" matTooltip="Ocultar columnas">
             <fa-icon [icon]="icShowCol"></fa-icon>
           </button>
 
-          <ng-template #template>
+          <ng-template #showColTemp>
             <div *ngFor="let column of columns" class="col-xs-12 col-md-3 example-col">
               <input type="checkbox" id="{{ column }}" class="k-checkbox" [disabled]="isDisabled(column)"
                 [checked]="!isHidden(column)" (change)="hideColumn(column)" />
