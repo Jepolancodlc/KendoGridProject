@@ -1,0 +1,35 @@
+<div class="center">
+  <kendo-grid [data]="gridView" [height]="410" [sortable]="{mode: 'multiple'}" [sort]="sort"
+    (sortChange)="sortChange($event)">
+
+
+    <kendo-grid-column field="puesto.id" title="ID" width="90">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="nombre" title="Name" width="250">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="" title="Category">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="" title="Price" width="80">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="" title="In stock" width="80">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="" title="Discontinued" width="120">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+      </ng-template>
+    </kendo-grid-column>
+
+  </kendo-grid>
+
+
+  <div>
+    <br>
+    <button mat-raised-button matTooltip="Tooltip on the right side of  the element" matTooltipPosition="right">
+      Tooltip
+    </button>
+  </div>
