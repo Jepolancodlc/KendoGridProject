@@ -7,6 +7,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
 import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,13 @@ export class AppComponent {
   icFileExp = faFileExport;
   icShowCol = faGripLinesVertical;
   icAgruparCol = faObjectGroup;
+  icAddPuesto = faPlusCircle;
   public gridView: GridDataResult;
   public datos: any[] = (data as any).default;
   private popupRef: PopupRef;
   public state: State = {
     skip: 0,
-    take: 10
+    take: 15
   };
   public columns: string[] = ["ID", "Name", "Category"];
   public hiddenColumns: string[] = [];

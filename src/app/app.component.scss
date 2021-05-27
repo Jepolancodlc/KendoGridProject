@@ -4,21 +4,11 @@
   padding: 50px;
 }
 
-.gridHeader {
-  background-color: darkgrey;
-  height: 50px;
-
-  div {
-    float: right;
-    margin-left: 3px;
-
-    button {
-      background-color: transparent;
-      border-color: transparent;
-      height: 50px;
-      width: 40px;
-      font-size: 18px;
-    }
-  }
-
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  height: 40px;
+  width: 40px;
+  font-size: 18px;
 }
