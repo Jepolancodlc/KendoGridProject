@@ -1,7 +1,6 @@
 <div class="center">
-  <kendo-grid [data]="gridView" [height]="410" [sortable]="{mode: 'multiple'}" [sort]="sort"
-    (sortChange)="sortChange($event)">
-
+  <kendo-grid [data]="gridView" [height]="410" [sortable]="{mode: 'multiple'}" [sort]="state.sort"
+    [pageSize]="state.take" [skip]="state.skip" [pageable]="true" (dataStateChange)="dataStateChange($event)">
 
     <kendo-grid-column field="puesto.id" title="ID" width="90">
     </kendo-grid-column>
@@ -25,11 +24,4 @@
     </kendo-grid-column>
 
   </kendo-grid>
-
-
-  <div>
-    <br>
-    <button mat-raised-button matTooltip="Tooltip on the right side of  the element" matTooltipPosition="right">
-      Tooltip
-    </button>
-  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { orderBy, SortDescriptor } from '@progress/kendo-data-query';
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { State, process } from '@progress/kendo-data-query';
 import * as data from './puestos.json'
 
 @Component({
@@ -11,32 +11,23 @@ import * as data from './puestos.json'
 export class AppComponent {
   public gridView: GridDataResult;
   public datos: any[] = (data as any).default;
-  public sort: SortDescriptor[] = [
-    {
-      field: "puesto.id",
-      dir: "asc",
-    },
-  ];
 
+
+  public state: State = {
+    skip: 0,
+    take: 10
+  };
 
   constructor() {
-    this.cargarDatos();
+    this.loadDatos();
   }
 
-
-  public sortChange(sort: SortDescriptor[]): void {
-    this.sort = sort;
-    this.cargarDatos();
+  private loadDatos(): void {
+    this.gridView = process(this.datos, this.state);
   }
 
-
-  private cargarDatos(): void {
-    this.gridView = {
-      data: orderBy(this.datos, this.sort),
-      total: this.datos.length,
-    };
-
+  public dataStateChange(state): void {
+    this.state = state;
+    this.loadDatos();
   }
-
-
 }
