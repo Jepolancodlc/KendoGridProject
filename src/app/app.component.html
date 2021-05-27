@@ -26,12 +26,10 @@
           </button>
         </div>
 
-        <div>
-          <button type="button" matTooltip="Exportar a excel" kendoGridExcelCommand>
-            <fa-icon [icon]="icFileExp"></fa-icon>
-
-          </button>
-        </div>
+        <button matTooltip="Exportar a excel" kendoGridExcelCommand>
+          <fa-icon [icon]="icFileExp"></fa-icon>
+        </button>
+        <kendo-grid-excel fileName="Puestos.xlsx"></kendo-grid-excel>
 
         <div>
           <button #showCol (click)="togglePopup(showCol, template)" matTooltip="Ocultar columnas">
