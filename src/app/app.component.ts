@@ -3,9 +3,10 @@ import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import * as data from './puestos.json'
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
-
-//Icons Imports
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
+import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  //Lista iconos
   icSearch = faSearch;
-
-
-
-  //
+  icFileExp = faFileExport;
+  icShowCol = faGripLinesVertical;
+  icAgruparCol = faObjectGroup;
   public gridView: GridDataResult;
   public datos: any[] = (data as any).default;
   private popupRef: PopupRef;
@@ -44,7 +42,6 @@ export class AppComponent {
   }
 
   //Hide Columns
-
   public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
     if (this.popupRef) {
       this.popupRef.close();

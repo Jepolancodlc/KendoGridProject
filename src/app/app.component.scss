@@ -5,14 +5,20 @@
 }
 
 .gridHeader {
-  background-color: Blue;
+  background-color: darkgrey;
   height: 50px;
 
   div {
     float: right;
-    margin-right: 5px;
-    margin-top: 15px;
+    margin-left: 3px;
 
+    button {
+      background-color: transparent;
+      border-color: transparent;
+      height: 50px;
+      width: 40px;
+      font-size: 18px;
+    }
   }
 
 }

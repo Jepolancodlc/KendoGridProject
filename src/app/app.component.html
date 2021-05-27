@@ -4,7 +4,7 @@
 
     <div>
       <button #showCol (click)="togglePopup(showCol, template)" matTooltip="Ocultar columnas">
-        <fa-icon [icon]="icSearch"></fa-icon>
+        <fa-icon [icon]="icShowCol"></fa-icon>
       </button>
 
       <ng-template #template>
@@ -17,15 +17,21 @@
     </div>
 
     <div>
-      <button></button>
+      <button matTooltip="Exportar a excel">
+        <fa-icon [icon]="icFileExp"></fa-icon>
+      </button>
     </div>
 
     <div>
-      <button></button>
+      <button matTooltip="Agrupar columnas">
+        <fa-icon [icon]="icAgruparCol"></fa-icon>
+      </button>
     </div>
 
     <div>
-      <button></button>
+      <button matTooltip="Buscar puesto">
+        <fa-icon [icon]="icSearch"></fa-icon>
+      </button>
     </div>
 
   </div>
