@@ -6,6 +6,8 @@ import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -22,6 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatTooltipModule,
     FontAwesomeModule,
     ExcelModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
