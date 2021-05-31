@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-// import * as data from '../assets/puestos.json';
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
@@ -16,11 +15,11 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  icSearch = faSearch;
-  icFileExp = faFileExport;
-  icShowCol = faGripLinesVertical;
-  icAgruparCol = faObjectGroup;
-  icAddPuesto = faPlusCircle;
+  public icSearch = faSearch;
+  public icFileExp = faFileExport;
+  public icShowCol = faGripLinesVertical;
+  public icAgruparCol = faObjectGroup;
+  public icAddPuesto = faPlusCircle;
   public gridView: GridDataResult;
   public datos: any[] = [];
   private popupRef: PopupRef;
@@ -33,14 +32,12 @@ export class AppComponent implements OnInit {
   private columns: string[] = ["ID", "Name", "Category"];
   private hiddenColumns: string[] = [];
   public groupable: boolean = false;
-  public buscador: boolean = false;
 
   ngOnInit() {
     this.loadDatos();
   }
 
   constructor(private popupService: PopupService, private appService: AppService) {
-
   }
 
   private loadDatos(): void {
@@ -57,7 +54,7 @@ export class AppComponent implements OnInit {
     this.loadDatos();
   }
 
-  //Hide Columns
+  //Hide Columns Methods
   public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
     if (this.popupRef) {
       this.popupRef.close();
@@ -90,14 +87,12 @@ export class AppComponent implements OnInit {
       hiddenColumns.splice(hiddenColumns.indexOf(columnName), 1);
     }
   }
-  /////
-  //Grouping
-  public isGroupable(): void {
 
+  //Grouping Methods
+  public isGroupable(): void {
     if (this.groupable === false) {
       this.state.group.splice(0, this.state.group.length)
     }
-
     this.groupable = !this.groupable;
   }
 
