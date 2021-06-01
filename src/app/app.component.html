@@ -7,7 +7,7 @@
     <ng-template kendoGridToolbarTemplate>
 
       <div>
-        <button matTooltip="Nuevo puesto" #newPuesto (click)="togglePopup(newPuesto, newPuestoTemp)">
+        <button matTooltip="Nuevo puesto">
           <fa-icon [icon]="icAddPuesto"></fa-icon>
         </button>
 
@@ -18,6 +18,7 @@
       </div>
 
       <kendo-grid-spacer></kendo-grid-spacer>
+
       <input class="search-box" placeholder="Search in all columns..." kendoTextBox
         (input)="onFilter($event.target.value)" *ngIf="buscador == true" />
 
@@ -48,66 +49,86 @@
 
     <kendo-grid-column field="puesto.id" title="ID" width="90">
     </kendo-grid-column>
+
     <kendo-grid-column field="puesto.puestoId" title="Código" width="100" [minResizableWidth]="90" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" filter='numeric'>
     </kendo-grid-column>
     <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo">
     </kendo-grid-column>
+
     <kendo-grid-column field="puestoTipo.nombre" title="Denominación" width="160">
     </kendo-grid-column>
+
     <kendo-grid-column field="tipoVinculo.nombre" title="TP" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="catalogo.nombre" title="Catálogo" width="110">
     </kendo-grid-column>
+
     <kendo-grid-column field="adscripcion.nombre" title="Adscripción administración" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="grupo1Id" title="G1" width="80">
     </kendo-grid-column>
     <kendo-grid-column field="grupo2Id" title="G2" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="escala.nombre" title="Escala" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" width="80">
     </kendo-grid-column>
     <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="80">
     </kendo-grid-column>
     <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="complementoDestinoId" title="ND" width="80" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="80" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="complementoEspecificoId" title="CE" width="80" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" width="80" filter='numeric'>
     </kendo-grid-column>
+
     <kendo-grid-column field="dotaciones" title="Dot" width="80" filter='numeric'>
     </kendo-grid-column>
     <kendo-grid-column field="ocupantes" title="Ocupantes" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="vacantes" title="Vacantes" width="80">
     </kendo-grid-column>
+
     <kendo-grid-column field="dotado" title="Dotado" width="80" filter="boolean">
       <ng-template kendoGridCellTemplate let-dataItem>
         <input type="checkbox" [checked]="dataItem.Dotado" />
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="singularizado" title="PS" width="80" filter="boolean">
       <ng-template kendoGridCellTemplate let-dataItem>
         <input type="checkbox" [checked]="dataItem.singularizado" />
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="reservadoNacionales" title="RN" width="80" filter="boolean">
       <ng-template kendoGridCellTemplate let-dataItem>
         <input type="checkbox" [checked]="dataItem.reservadoNacionales" />
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="disponibilidadPlena" title="PD" width="80" filter="boolean">
       <ng-template kendoGridCellTemplate let-dataItem>
         <input type="checkbox" [checked]="dataItem.disponibilidadPlena" />
       </ng-template>
     </kendo-grid-column>
+
     <kendo-grid-column field="personaDeConfianza" title="PC" width="80" filter=" boolean">
       <ng-template kendoGridCellTemplate let-dataItem>
         <input type="checkbox" [checked]="dataItem.PC" />

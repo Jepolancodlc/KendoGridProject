@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { DataBindingDirective, GridDataResult } from '@progress/kendo-angular-grid';
+import { Component, OnInit } from '@angular/core';
+import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +22,6 @@ export class AppComponent implements OnInit {
   public icAddPuesto = faPlusCircle;
   public gridView: GridDataResult;
   public datos: Puesto[];
-  private popupRef: PopupRef;
   public state: State = {
     skip: 0,
     take: 15,
@@ -32,11 +30,12 @@ export class AppComponent implements OnInit {
   };
   public groupable: boolean = false;
 
+
   ngOnInit() {
     this.loadDatos();
   }
 
-  constructor(private popupService: PopupService, private appService: AppService) {
+  constructor(private appService: AppService) {
   }
 
   private loadDatos(): void {
@@ -46,7 +45,6 @@ export class AppComponent implements OnInit {
         this.gridView = process(this.datos, this.state)
       });
   }
-
 
   public dataStateChange(state): void {
     this.state = state;
@@ -60,7 +58,6 @@ export class AppComponent implements OnInit {
     }
     this.groupable = !this.groupable;
   }
-
 
   //Global Search
   public onFilter(inputValue: string): void {
@@ -77,4 +74,5 @@ export class AppComponent implements OnInit {
       },
     });
   }
+
 }
