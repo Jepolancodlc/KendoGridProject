@@ -30,9 +30,6 @@ export class AppComponent implements OnInit {
     group: [],
 
   };
-  private columns: string[] = ['Código', 'Código oficial', 'Puesto tipo', 'Denominación', 'TP', 'Catálogo', 'Adscripción administración', 'G1', 'G2', 'Escala', 'Cuerpo', 'Forma provisión'
-    , 'Grupo (€)', 'ND', 'ND (€)', 'CE', 'CE (€)', 'Dot', 'Ocupantes', 'Vacantes', 'Dotado', 'PS', 'RN', 'PD', 'PC', 'Titulaciones'];
-  private hiddenColumns: string[] = [];
   public groupable: boolean = false;
 
   ngOnInit() {
@@ -54,40 +51,6 @@ export class AppComponent implements OnInit {
   public dataStateChange(state): void {
     this.state = state;
     this.loadDatos();
-  }
-
-  //Hide Columns Methods
-  public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
-    if (this.popupRef) {
-      this.popupRef.close();
-      this.popupRef = null;
-    } else {
-      this.popupRef = this.popupService.open({
-        anchor: anchor,
-        content: template,
-      });
-    }
-  }
-
-  public isHidden(columnName: string): boolean {
-    return this.hiddenColumns.indexOf(columnName) > -1;
-  }
-
-  public isDisabled(columnName: string): boolean {
-    return (
-      this.columns.length - this.hiddenColumns.length === 1 &&
-      !this.isHidden(columnName)
-    );
-  }
-
-  public hideColumn(columnName: string): void {
-    const hiddenColumns = this.hiddenColumns;
-
-    if (!this.isHidden(columnName)) {
-      hiddenColumns.push(columnName);
-    } else {
-      hiddenColumns.splice(hiddenColumns.indexOf(columnName), 1);
-    }
   }
 
   //Grouping Methods
