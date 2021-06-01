@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
     group: [],
 
   };
-  private columns: string[] = ["ID", "Name", "Category"];
+  private columns: string[] = ['Código', 'Código oficial', 'Puesto tipo', 'Denominación', 'TP', 'Catálogo', 'Adscripción administración', 'G1', 'G2', 'Escala', 'Cuerpo', 'Forma provisión'
+    , 'Grupo (€)', 'ND', 'ND (€)', 'CE', 'CE (€)', 'Dot', 'Ocupantes', 'Vacantes', 'Dotado', 'PS', 'RN', 'PD', 'PC', 'Titulaciones'];
   private hiddenColumns: string[] = [];
   public groupable: boolean = false;
 

@@ -56,25 +56,77 @@
 
     </ng-template>
 
-    <kendo-grid-column field="puesto.id" title="ID" width="90" [minResizableWidth]="90" *ngIf="!isHidden('ID')">
+    <kendo-grid-column field="puesto.id" title="ID" width="90" *ngIf="!isHidden('ID')">
     </kendo-grid-column>
-
-    <kendo-grid-column field="nombre" title="Name" width="250" *ngIf="!isHidden('Name')">
+    <kendo-grid-column field="puesto.puestoId" title="Código" width="100" [minResizableWidth]="90"
+      *ngIf="!isHidden('Código')">
     </kendo-grid-column>
-
-    <kendo-grid-column field="" title="Category" *ngIf="!isHidden('Category')">
+    <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" *ngIf="!isHidden('Código oficial')">
     </kendo-grid-column>
-
-    <kendo-grid-column field="" title="Price" width="80">
+    <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo" *ngIf="!isHidden('Puesto tipo')">
     </kendo-grid-column>
-
-    <kendo-grid-column field="" title="In stock" width="80">
+    <kendo-grid-column field="puestoTipo.nombre" title="Denominación" width="160" *ngIf="!isHidden('Denominación')">
     </kendo-grid-column>
-
-    <kendo-grid-column field="" title="Discontinued" width="120">
+    <kendo-grid-column field="tipoVinculo.nombre" title="TP" width="80" *ngIf="!isHidden('TP')">
+    </kendo-grid-column>
+    <kendo-grid-column field="catalogo.nombre" title="Catálogo" width="110" *ngIf="!isHidden('Catálogo')">
+    </kendo-grid-column>
+    <kendo-grid-column field="adscripción.nombre" title="Adscripción administración" width="80"
+      *ngIf="!isHidden('Adscripción administración')">
+    </kendo-grid-column>
+    <kendo-grid-column field="grupo1Id" title="G1" width="80" *ngIf="!isHidden('G1')">
+    </kendo-grid-column>
+    <kendo-grid-column field="grupo2Id" title="G2" width="80" *ngIf="!isHidden('G2')">
+    </kendo-grid-column>
+    <kendo-grid-column field="escala.nombre" title="Escala" width="80" *ngIf="!isHidden('Escala')">
+    </kendo-grid-column>
+    <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" width="80" *ngIf="!isHidden('Cuerpo')">
+    </kendo-grid-column>
+    <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="80"
+      *ngIf="!isHidden('Forma provisión')">
+    </kendo-grid-column>
+    <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" *ngIf="!isHidden('Grupo (€)')">
+    </kendo-grid-column>
+    <kendo-grid-column field="complementoDestinoId" title="ND" width="80" *ngIf="!isHidden('ND')">
+    </kendo-grid-column>
+    <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="80" *ngIf="!isHidden('ND (€)')">
+    </kendo-grid-column>
+    <kendo-grid-column field="complementoEspecificoId" title="CE" width="80" *ngIf="!isHidden('CE')">
+    </kendo-grid-column>
+    <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" width="80" *ngIf="!isHidden('CE (€)')">
+    </kendo-grid-column>
+    <kendo-grid-column field="dotaciones" title="Dot" width="80" *ngIf="!isHidden('Dot')">
+    </kendo-grid-column>
+    <kendo-grid-column field="ocupantes" title="Ocupantes" width="80" *ngIf="!isHidden('Ocupantes')">
+    </kendo-grid-column>
+    <kendo-grid-column field="vacantes" title="Vacantes" width="80" *ngIf="!isHidden('Vacantes')">
+    </kendo-grid-column>
+    <kendo-grid-column field="dotado" title="Dotado" width="80" *ngIf="!isHidden('Dotado')">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+        <input type="checkbox" [checked]="dataItem.Dotado" />
       </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="singularizado" title="PS" width="80" *ngIf="!isHidden('PS')">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.PS" />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="reservadoNacionales" title="RN" width="80" *ngIf="!isHidden('RN')">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.RN" />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="disponibilidadPlena" title="PD" width="80" *ngIf="!isHidden('PD')">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.PD" />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="personaDeConfianza" title="PC" width="80" *ngIf="!isHidden('PC')">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.PC" />
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="" title="Titulaciones" width="80" *ngIf="!isHidden('Titulaciones')">
     </kendo-grid-column>
 
   </kendo-grid>
