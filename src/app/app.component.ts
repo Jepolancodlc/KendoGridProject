@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { DataBindingDirective, GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
 import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
+import { Puesto } from './model-puestos';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   public icAgruparCol = faObjectGroup;
   public icAddPuesto = faPlusCircle;
   public gridView: GridDataResult;
-  public datos: any[] = [];
+  public datos: Puesto[];
   private popupRef: PopupRef;
   public state: State = {
     skip: 0,
@@ -97,4 +98,20 @@ export class AppComponent implements OnInit {
     this.groupable = !this.groupable;
   }
 
+
+  //Global Search
+  public onFilter(inputValue: string): void {
+    this.gridView = process(this.datos, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "puesto.id",
+            operator: "contains",
+            value: inputValue,
+          }
+        ],
+      },
+    });
+  }
 }
