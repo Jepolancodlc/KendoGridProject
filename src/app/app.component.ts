@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
 
   };
   public groupable: boolean = false;
+  public commonFilter = "";
 
 
   ngOnInit() {
@@ -44,6 +45,7 @@ export class AppComponent implements OnInit {
         this.datos = data;
         this.gridView = process(this.datos, this.state)
       });
+    this.refreshData();
   }
 
   public dataStateChange(state): void {
@@ -60,19 +62,38 @@ export class AppComponent implements OnInit {
   }
 
   //Global Search
+  // public onFilter(inputValue: string): void {
+  //   this.gridView = process(this.datos, {
+  //     filter: {
+  //       logic: "or",
+  //       filters: [
+  //         {
+  //           field: "puesto.id",
+  //           operator: "contains",
+  //           value: inputValue,
+  //         }
+  //       ],
+  //     },
+  //   });
+  // }
+
   public onFilter(inputValue: string): void {
-    this.gridView = process(this.datos, {
-      filter: {
-        logic: "or",
-        filters: [
-          {
-            field: "puesto.id",
-            operator: "contains",
-            value: inputValue,
-          }
-        ],
-      },
-    });
+    this.commonFilter = inputValue;
+    this.refreshData();
   }
 
+  private refreshData(): void {
+    // Fem la primera busqueda per text
+    let filtreBusqueda = this.datos;
+    if (this.commonFilter.toLowerCase() !== null || this.commonFilter.trim().toLowerCase() !== '') {
+      filtreBusqueda = filtreBusqueda
+        .filter(
+          // Filtrem els objectes que tenen algun valor de tipus string i que contingui el text buscat
+          datos => Object.values(datos).filter(
+            valor => typeof valor === 'string' && valor.indexOf(this.commonFilter) > -1
+          ).length > 0
+        );
+    }
+    this.gridView = process(filtreBusqueda, this.state);
+  }
 }
