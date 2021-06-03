@@ -7,9 +7,23 @@
 
     <ng-template kendoGridToolbarTemplate>
       <div>
-        <button matTooltip="Nuevo puesto" class="btnAdd">
+        <button matTooltip="Nuevo puesto" class="btnAdd" #newPuesto (click)="togglePopup(newPuesto, newPuestoTemp)">
           <fa-icon [icon]="icAddPuesto"></fa-icon>
         </button>
+
+        <ng-template #newPuestoTemp>
+          <div class="containerAddBtns">
+            <button kendoGridAddCommand look="flat">
+              <fa-icon class="icBtn" [icon]="icList"></fa-icon>
+              Nuevo desde lista
+            </button>
+
+            <button kendoGridAddCommand look="flat">
+              <fa-icon class="icBtn" [icon]="icPlus"></fa-icon>
+              Nuevo desde Ficha
+            </button>
+          </div>
+        </ng-template>
       </div>
 
       <kendo-grid-spacer></kendo-grid-spacer>
@@ -25,7 +39,7 @@
         </div>
 
         <div>
-          <button matTooltip="Agrupar columnas" (click)="isGroupable()">
+          <button matTooltip="Agrupar columnas" (click)="isGroupable()" look="flat">
             <fa-icon [icon]="icAgruparCol"></fa-icon>
           </button>
         </div>
@@ -39,7 +53,6 @@
           <kendo-grid-column-chooser></kendo-grid-column-chooser>
         </div>
       </div>
-      <button kendoGridAddCommand>Add new</button>
 
     </ng-template>
 

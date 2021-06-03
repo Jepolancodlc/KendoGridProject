@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch, faThList } from '@fortawesome/free-solid-svg-icons';
 import { faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
 import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public icList = faThList;
   public icSearch = faSearch;
+  public icPlus = faPlus;
   public icFileExp = faFileExport;
   public icShowCol = faGripLinesVertical;
   public icAgruparCol = faObjectGroup;
@@ -33,13 +36,14 @@ export class AppComponent implements OnInit {
   public commonFilter = "";
   public formGroup: FormGroup;
   private editedRowIndex: number;
+  private popupRef: PopupRef;
 
 
   ngOnInit() {
     this.loadDatos();
   }
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private popupService: PopupService,) {
   }
 
   private loadDatos(): void {
@@ -148,5 +152,18 @@ export class AppComponent implements OnInit {
     grid.closeRow(rowIndex);
     this.editedRowIndex = undefined;
     this.formGroup = undefined;
+  }
+
+
+  public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
+    if (this.popupRef) {
+      this.popupRef.close();
+      this.popupRef = null;
+    } else {
+      this.popupRef = this.popupService.open({
+        anchor: anchor,
+        content: template,
+      });
+    }
   }
 }
