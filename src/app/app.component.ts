@@ -8,6 +8,7 @@ import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,8 @@ export class AppComponent implements OnInit {
   };
   public groupable: boolean = false;
   public commonFilter = "";
+  public formGroup: FormGroup;
+  private editedRowIndex: number;
 
 
   ngOnInit() {
@@ -78,22 +81,72 @@ export class AppComponent implements OnInit {
   // }
 
   public onFilter(inputValue: string): void {
-    this.commonFilter = inputValue;
-    this.refreshData();
+    // this.commonFilter = inputValue;
+    // this.refreshData();
   }
 
   private refreshData(): void {
-    // Fem la primera busqueda per text
-    let filtreBusqueda = this.datos;
-    if (this.commonFilter.toLowerCase() !== null || this.commonFilter.trim().toLowerCase() !== '') {
-      filtreBusqueda = filtreBusqueda
-        .filter(
-          // Filtrem els objectes que tenen algun valor de tipus string i que contingui el text buscat
-          datos => Object.values(datos).filter(
-            valor => typeof valor === 'string' && valor.indexOf(this.commonFilter) > -1
-          ).length > 0
-        );
+    // // Fem la primera busqueda per text
+    // let filtreBusqueda = this.datos;
+    // if (this.commonFilter.toLowerCase() !== null || this.commonFilter.trim().toLowerCase() !== '') {
+    //   filtreBusqueda = filtreBusqueda
+    //     .filter(
+    //       // Filtrem els objectes que tenen algun valor de tipus string i que contingui el text buscat
+    //       datos => Object.values(datos).filter(
+    //         valor => typeof valor === 'string' && valor.indexOf(this.commonFilter) > -1
+    //       ).length > 0
+    //     );
+    // }
+    // this.gridView = process(filtreBusqueda, this.state);
+  }
+
+  //CRUD
+  public editHandler({ sender, rowIndex, dataItem }) {
+    this.formGroup = new FormGroup({
+      'id': new FormControl(dataItem.id),
+      'codigo': new FormControl(dataItem.codigo),
+    });
+    this.editedRowIndex = rowIndex;
+
+    sender.editRow(rowIndex, this.formGroup);
+    this.loadDatos();
+  }
+
+  public addHandler({ sender }) {
+    this.closeEditor(sender);
+    this.formGroup = new FormGroup({
+      'id': new FormControl(),
+      'codigo': new FormControl(),
+    });
+
+    sender.addRow(this.formGroup);
+    this.loadDatos();
+  }
+
+  public cancelHandler({ sender, rowIndex }) {
+    sender.closeRow(rowIndex)
+  }
+
+  public saveHandler({ sender, rowIndex, formGroup, isNew }) {
+    const puesto: Puesto = formGroup.value;
+
+    if (isNew) {
+      this.appService.post(puesto).subscribe();
+    } else {
+      this.appService.put(puesto).subscribe();
     }
-    this.gridView = process(filtreBusqueda, this.state);
+    sender.closeRow(rowIndex);
+    this.loadDatos();
+  }
+
+  public removeHandler({ dataItem }) {
+    this.appService.delete(dataItem).subscribe();
+    this.loadDatos();
+  }
+
+  private closeEditor(grid, rowIndex = this.editedRowIndex) {
+    grid.closeRow(rowIndex);
+    this.editedRowIndex = undefined;
+    this.formGroup = undefined;
   }
 }

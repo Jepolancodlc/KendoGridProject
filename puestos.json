@@ -1,4 +1,5 @@
-[
+{
+  "puestos":[
     {
         "adscripcion": null,
         "camino": null,
@@ -81440,3 +81441,5 @@
         "versionId": 1
     }
 ]
+
+}
