@@ -1,8 +1,14 @@
+$primaryColor: #005CB4;
+
 .center {
   margin: auto;
   width: 93%;
   padding: 50px;
   height: 83%
+}
+
+.btnAdd {
+  font-size: 22px !important;
 }
 
 .btnAdd,
@@ -43,4 +49,12 @@
   border-radius: 6px;
   width: 300px;
   height: 34px;
+}
+
+.k-grid-edit-command,
+.k-grid-remove-command,
+.k-grid-save-command,
+.k-grid-cancel-command {
+  color: $primaryColor;
+  background-color: transparent;
 }

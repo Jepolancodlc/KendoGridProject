@@ -5,6 +5,23 @@
       (dataStateChange)="dataStateChange($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
       (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)">
 
+      <kendo-grid-messages [groupPanelEmpty]="'Arrastra las columnas para agrupar aquí'" [filter]="'Filtro'"
+        [filterAfterOperator]="'Es superior a'" [sortAscending]="'Ordenación ascendente'"
+        [sortDescending]="'Ordenación descendente'" [filterAfterOrEqualOperator]="'Es superior a'"
+        [filterAndLogic]="'Y'" [filterBeforeOperator]="'Es anterior a'"
+        [filterBeforeOrEqualOperator]="'Es anterior o igual a'" [filterBooleanAll]="'Todo'"
+        [filterClearButton]="'Limpiar'" [filterContainsOperator]="'Contiene'" [filterEndsWithOperator]="'Finaliza con'"
+        [filterEqOperator]="'Es igual que'" [filterFilterButton]="'Filtrar'" [filterGtOperator]="'Es más grande que'"
+        [filterGteOperator]="'Es más grande o igual que'" [filterIsEmptyOperator]="'Es vacío'"
+        [filterIsFalse]="'Es falso'" [filterIsNotEmptyOperator]="'No está vacío'"
+        [filterIsNotNullOperator]="'No es nulo'" [filterIsNullOperator]="'Es nulo'" [filterIsTrue]="'Es verdadero'"
+        [filterLtOperator]="'Es menor que'" [filterLteOperator]="'Es menor o igual que'"
+        [filterNotContainsOperator]="'No contiene'" [filterNotEqOperator]="'No es igual a'" [filterOrLogic]="'O'"
+        [filterStartsWithOperator]="'Empieza con'" [pagerFirstPage]="'Ir a la primera página'"
+        [pagerItems]="'registros'" [pagerItemsPerPage]="'registros por página'" [pagerOf]="'de'" [columns]="'Columnas'"
+        [columnsApply]="'Aplicar'" [columnsReset]="'Reiniciar'">
+      </kendo-grid-messages>
+
 
       <ng-template kendoGridToolbarTemplate>
         <div>
@@ -34,24 +51,22 @@
           <kendo-textbox class="search-box" placeholder="Buscar puesto ..." kendoTextBox
             (input)="onFilter($event.target.value)" *ngIf="buscador == true" [clearButton]="true">
           </kendo-textbox>
-          <div>
-            <button matTooltip="Buscar puesto" (click)="buscador = !buscador">
-              <fa-icon [icon]="icSearch"></fa-icon>
-            </button>
-          </div>
 
-          <div>
-            <button matTooltip="Agrupar columnas" (click)="isGroupable()" look="flat">
-              <fa-icon [icon]="icAgruparCol"></fa-icon>
-            </button>
-          </div>
+          <button matTooltip="Buscar puesto" (click)="buscador = !buscador">
+            <fa-icon [icon]="icSearch"></fa-icon>
+          </button>
 
-          <button matTooltip="Exportar a excel" kendoGridExcelCommand>
+          <button matTooltip="Agrupar columnas" (click)="isGroupable()" look="flat">
+            <fa-icon [icon]="icDesagrupCol" *ngIf="groupable"></fa-icon>
+            <fa-icon [icon]="icAgruparCol" *ngIf="!groupable"></fa-icon>
+          </button>
+
+          <button matTooltip=" Exportar a excel" kendoGridExcelCommand look="flat">
             <fa-icon [icon]="icFileExp"></fa-icon>
           </button>
           <kendo-grid-excel fileName="Puestos.xlsx"></kendo-grid-excel>
 
-          <div>
+          <div matTooltip="Ocultar columnas">
             <kendo-grid-column-chooser></kendo-grid-column-chooser>
           </div>
         </div>
@@ -85,6 +100,27 @@
         </ng-template>
       </kendo-grid-column>
 
+      <kendo-grid-command-column title="" width="100" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-isNew="isNew">
+
+          <button kendoGridEditCommand look="flat" matTooltip="Editar puesto">
+            <fa-icon [icon]="icEdit"></fa-icon>
+          </button>
+
+          <button kendoGridRemoveCommand look="flat" matTooltip="Eliminar puesto">
+            <fa-icon [icon]="icRemove"></fa-icon>
+          </button>
+
+          <button kendoGridSaveCommand look="flat">
+            <fa-icon [icon]="icCheck" matTooltip="Guardar"></fa-icon>
+          </button>
+
+          <button kendoGridCancelCommand look="flat">
+            <fa-icon [icon]="icCancelar" matTooltip="Cancelar"></fa-icon>
+          </button>
+
+        </ng-template>
+      </kendo-grid-command-column>
 
       <kendo-grid-column field="id" title="ID" width="90" media="(min-width: 600px)" editor="numeric">
       </kendo-grid-column>
@@ -93,20 +129,8 @@
         editor="numeric" media="(min-width: 600px)">>
       </kendo-grid-column>
 
-      <kendo-grid-column field="adscripcion.nombre" editor="text" title="Price"></kendo-grid-column>
-      <kendo-grid-command-column title="command" width="220" media="(min-width: 600px)">
-        <ng-template kendoGridCellTemplate let-isNew="isNew">
-          <!-- edit command directive, will be visible when not in edit mode -->
-          <button kendoGridEditCommand [primary]="true">Edit</button>
-          <!-- remove command directive, will be visible when not in edit mode -->
-          <button kendoGridRemoveCommand>Remove</button>
-          <!-- save command directive, will be visible when in edit mode -->
-          <button kendoGridSaveCommand>{{ isNew ? 'Add' : 'Update' }}</button>
-          <!-- cancel command directive, will be visible when in edit mode -->
-          <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
-        </ng-template>
-      </kendo-grid-command-column>
-
+      <kendo-grid-column field="adscripcion.nombre" editor="text" title="Price" media="(min-width: 600px)">
+      </kendo-grid-column>
 
       <!--
     <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" filter='numeric'
@@ -141,10 +165,10 @@
     </kendo-grid-column>
     <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="80" media="(min-width: 600px)">
     </kendo-grid-column>
-    <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" filter='numeric' media="(min-width: 600px)">
+    <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" filter='numeric'media="(min-width: 600px)">
     </kendo-grid-column>
 
-    <kendo-grid-column field="complementoDestinoId" title="ND" width="80" filter='numeric' media="(min-width: 600px)">
+    <kendo-grid-column field="complementoDestinoId" title="ND" width="80" filter='numeric'media="(min-width: 600px)">
     </kendo-grid-column>
 
     <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="80" filter='numeric'
@@ -159,7 +183,7 @@
       media="(min-width: 600px)">
     </kendo-grid-column>
 
-    <kendo-grid-column field="dotaciones" title="Dot" width="80" filter='numeric' media="(min-width: 600px)">
+    <kendo-grid-column field="dotaciones" title="Dot" width="80" filter='numeric'media="(min-width: 600px)">
     </kendo-grid-column>
     <kendo-grid-column field="ocupantes" title="Ocupantes" width="80" media="(min-width: 600px)">
     </kendo-grid-column>

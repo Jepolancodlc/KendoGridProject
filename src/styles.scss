@@ -1,4 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+$primaryColor: #005cb4;
+$primaryColorHover: #005db442;
+$primaryColorHoverLight: #005db410;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.k-pager-numbers .k-link.k-state-selected {
+  border-color: $primaryColorHover;
+  color: $primaryColor;
+  background-color: $primaryColorHover;
+}
+
+.k-pager-numbers .k-link {
+  color: black;
+}
+
+.k-pager-numbers .k-link:hover {
+  color: $primaryColor;
+  background-color: $primaryColorHoverLight;
+}
+
+.k-button .k-icon {
+  height: 70px;
+  width: 40px;
+  font-size: 18px;
+  color: #4a4848;
+  padding-top: 13px;
+}
+
+.k-button:hover {
+  background-color: transparent;
+}
+
+.k-button.k-primary {
+  border-color: $primaryColor;
+  background-color: $primaryColor;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+
+  &:hover {
+    border-color: $primaryColor;
+    background-color: $primaryColor;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+  }
+}
+
+.k-action-buttons .k-button:not(.k-primary),
+.k-button.k-primary {
+  border-radius: 2px;
+  width: 110px;
+  height: 35px;
+  font-weight: normal;
+}
+
+.k-checkbox:checked,
+.k-checkbox.k-checked {
+  border-color: $primaryColor;
+  color: #ffffff;
+  background-color: $primaryColor;
+}
