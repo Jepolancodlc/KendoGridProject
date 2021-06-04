@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
         this.datos = data;
         this.gridView = process(this.datos, this.state)
       });
-    this.refreshData();
   }
 
   public dataStateChange(state): void {
@@ -69,39 +68,19 @@ export class AppComponent implements OnInit {
   }
 
   //Global Search
-  // public onFilter(inputValue: string): void {
-  //   this.gridView = process(this.datos, {
-  //     filter: {
-  //       logic: "or",
-  //       filters: [
-  //         {
-  //           field: "puesto.id",
-  //           operator: "contains",
-  //           value: inputValue,
-  //         }
-  //       ],
-  //     },
-  //   });
-  // }
-
   public onFilter(inputValue: string): void {
-    // this.commonFilter = inputValue;
-    // this.refreshData();
-  }
+    this.gridView = process(this.datos, {
+      filter: {
+        logic: "or",
+        filters: [
+          { field: "id", operator: "contains", value: inputValue },
+          { field: "puestoIdOficial", operator: "contains", value: inputValue },
+          { field: "puestoTipo.nombreCompleto", operator: "contains", value: inputValue },
+          { field: "nombre", operator: "contains", value: inputValue },
 
-  private refreshData(): void {
-    // // Fem la primera busqueda per text
-    // let filtreBusqueda = this.datos;
-    // if (this.commonFilter.toLowerCase() !== null || this.commonFilter.trim().toLowerCase() !== '') {
-    //   filtreBusqueda = filtreBusqueda
-    //     .filter(
-    //       // Filtrem els objectes que tenen algun valor de tipus string i que contingui el text buscat
-    //       datos => Object.values(datos).filter(
-    //         valor => typeof valor === 'string' && valor.indexOf(this.commonFilter) > -1
-    //       ).length > 0
-    //     );
-    // }
-    // this.gridView = process(filtreBusqueda, this.state);
+        ],
+      },
+    });
   }
 
   //CRUD

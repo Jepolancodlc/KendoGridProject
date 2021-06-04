@@ -6,7 +6,9 @@ import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
     FontAwesomeModule,
     ExcelModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    InputsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
