@@ -5,7 +5,7 @@ import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faThList, faTr
 import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 
 @Component({
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     this.loadDatos();
   }
 
-  constructor(private appService: AppService, private popupService: PopupService,) {
+  constructor(private appService: AppService, private popupService: PopupService, private formBuilder: FormBuilder) {
   }
 
   private loadDatos(): void {
@@ -86,11 +86,20 @@ export class AppComponent implements OnInit {
     });
   }
 
+
+
   //CRUD
+  public createFormGroup(dataItem: Puesto): FormGroup {
+    return this.formGroup = this.formBuilder.group({
+      'id': new FormControl(),
+      'nombre': new FormControl()
+    });
+  }
+
   public editHandler({ sender, rowIndex, dataItem }) {
     this.formGroup = new FormGroup({
       'id': new FormControl(dataItem.id),
-      'codigo': new FormControl(dataItem.codigo),
+      'nombre': new FormControl(dataItem.denominacion),
     });
     this.editedRowIndex = rowIndex;
 
@@ -100,11 +109,7 @@ export class AppComponent implements OnInit {
 
   public addHandler({ sender }) {
     this.closeEditor(sender);
-    this.formGroup = new FormGroup({
-      'id': new FormControl(),
-      'codigo': new FormControl(),
-    });
-
+    this.formGroup = sender.addRow(this.createFormGroup(new Puesto()));
     sender.addRow(this.formGroup);
     this.loadDatos();
   }
@@ -135,7 +140,6 @@ export class AppComponent implements OnInit {
     this.editedRowIndex = undefined;
     this.formGroup = undefined;
   }
-
 
   public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
     if (this.popupRef) {

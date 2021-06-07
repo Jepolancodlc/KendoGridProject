@@ -4,7 +4,8 @@
       [groupable]="groupable" filterable="menu" [filter]="state.filter" enabled="groupable" [group]="state.group"
       (dataStateChange)="dataStateChange($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
       (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)">
-
+      <!-- (cellClick)="cellClickHandler($event)"
+      (cellClose)="cellCloseHandler($event)" -->
       <kendo-grid-messages [groupPanelEmpty]="'Arrastra las columnas para agrupar aquí'" [filter]="'Filtro'"
         [filterAfterOperator]="'Es superior a'" [sortAscending]="'Ordenación ascendente'"
         [sortDescending]="'Ordenación descendente'" [filterAfterOrEqualOperator]="'Es superior a'"
@@ -100,7 +101,7 @@
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-command-column title="" width="100" media="(min-width: 600px)">
+      <kendo-grid-command-column [width]="15" media="(min-width: 600px)" [reorderable]="false">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
 
           <button kendoGridEditCommand look="flat" matTooltip="Editar puesto">
@@ -122,14 +123,13 @@
         </ng-template>
       </kendo-grid-command-column>
 
-      <kendo-grid-column field="id" title="ID" width="90" media="(min-width: 600px)" editor="numeric">
+      <kendo-grid-column field="id" title="ID" width="20" media="(min-width: 600px)" [minResizableWidth]="90">
       </kendo-grid-column>
 
-      <kendo-grid-column field="puesto.puestoId" title="Código" width="100" [minResizableWidth]="90" filter='numeric'
-        editor="numeric" media="(min-width: 600px)">>
+      <kendo-grid-column field="puesto.puestoId" title="Código" width="20" filter='numeric' media="(min-width: 600px)">
       </kendo-grid-column>
 
-      <kendo-grid-column field="adscripcion.nombre" editor="text" title="Price" media="(min-width: 600px)">
+      <kendo-grid-column field="nombre" title="Denominación" width="100" media="(min-width: 600px)" editor="text">
       </kendo-grid-column>
 
       <!--

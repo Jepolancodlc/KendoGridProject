@@ -3,7 +3,7 @@ export class Puesto {
   public codigo: number;
   // public codOficial: number;
   // public puestoTipo: string;
-  // public denominacion: string;
+  public denominacion: string;
   // public tipoVinculo: string;
   // public catalogo: string;
   // public adscripcion: string;
