@@ -90,19 +90,62 @@ export class AppComponent implements OnInit {
 
   //CRUD
   public createFormGroup(dataItem: Puesto): FormGroup {
+    const item = dataItem || new Puesto();
+
     return this.formGroup = this.formBuilder.group({
-      'id': new FormControl(),
-      'nombre': new FormControl()
+      id: new FormControl(item.id),
+      puesto: new FormGroup({
+        puestoId: new FormControl(item?.codigo?.id),
+      }),
+      puestoIdOficial: new FormControl(item.codOficial),
+      puestoTipo: new FormGroup({
+        nombre: new FormControl(item?.puestoTipo?.nombre)
+      }),
+      nombre: new FormControl(item.denominacion),
+      tipoVinculo: new FormGroup({
+        nombre: new FormControl(item?.tipoVinculo?.nombre)
+      }),
+
+      catalogo: new FormGroup({
+        nombre: new FormControl(item?.catalogo?.nombre)
+      }),
+
+      adscripcion: new FormGroup({
+        nombre: new FormControl(item?.adscripcion?.nombre)
+      }),
+
+      grupo1Id: new FormControl(item.g1),
+      grupo2Id: new FormControl(item.g2),
+
+      escala: new FormGroup({
+        nombre: new FormControl(item?.escala?.nombre)
+      }),
+
+      cuerpo: new FormGroup({
+        nombre: new FormControl(item?.cuerpo?.nombre)
+      }),
+      formaProvision: new FormGroup({
+        nombre: new FormControl(item?.formaProvision?.nombre)
+      }),
+      grupo1Importe: new FormControl(item.grupoImporte),
+      complementoDestinoId: new FormControl(item.complementoDestinoId),
+      complementoDestinoImporte: new FormControl(item.complementoDestinoImporte),
+      complementoEspecificoId: new FormControl(item.complementoEspecificoId),
+      complementoEspecificoImporte: new FormControl(item.complementoEspecificoImporte),
+      dotaciones: new FormControl(item.dotaciones),
+      ocupantes: new FormControl(item.ocupantes),
+      vacantes: new FormControl(item.vacantes),
+      dotado: new FormControl(item.dotado),
+      singularizado: new FormControl(item.singularizado),
+      reservadoNacionales: new FormControl(item.reservadoNacionales),
+      disponibilidadPlena: new FormControl(item.disponibilidadPlena),
+      personaDeConfianza: new FormControl(item.personaDeConfianza),
     });
   }
 
   public editHandler({ sender, rowIndex, dataItem }) {
-    this.formGroup = new FormGroup({
-      'id': new FormControl(dataItem.id),
-      'nombre': new FormControl(dataItem.denominacion),
-    });
+    this.formGroup = this.createFormGroup(dataItem);
     this.editedRowIndex = rowIndex;
-
     sender.editRow(rowIndex, this.formGroup);
     this.loadDatos();
   }
@@ -141,6 +184,7 @@ export class AppComponent implements OnInit {
     this.formGroup = undefined;
   }
 
+  //
   public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
     if (this.popupRef) {
       this.popupRef.close();
@@ -153,3 +197,4 @@ export class AppComponent implements OnInit {
     }
   }
 }
+

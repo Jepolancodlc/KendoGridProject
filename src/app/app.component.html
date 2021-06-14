@@ -101,7 +101,7 @@
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-command-column [width]="15" media="(min-width: 600px)" [reorderable]="false">
+      <kendo-grid-command-column [width]="50" media="(min-width: 600px)" [reorderable]="false">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
 
           <button kendoGridEditCommand look="flat" matTooltip="Editar puesto">
@@ -123,103 +123,99 @@
         </ng-template>
       </kendo-grid-command-column>
 
-      <kendo-grid-column field="id" title="ID" width="20" media="(min-width: 600px)" [minResizableWidth]="90">
+      <kendo-grid-column field="id" title="ID" width="110" media="(min-width: 600px)" [minResizableWidth]="90">
       </kendo-grid-column>
 
-      <kendo-grid-column field="puesto.puestoId" title="Código" width="20" filter='numeric' media="(min-width: 600px)">
+      <kendo-grid-column field="puesto.puestoId" width="100" title="Código" filter='numeric' media="(min-width: 600px)">
       </kendo-grid-column>
 
-      <kendo-grid-column field="nombre" title="Denominación" width="100" media="(min-width: 600px)" editor="text">
+      <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="100" filter='numeric'
+        media="(min-width: 600px)">>
       </kendo-grid-column>
 
-      <!--
-    <kendo-grid-column field="puestoIdOficial" title="Código oficial" width="150" filter='numeric'
-      media="(min-width: 600px)">>
-    </kendo-grid-column>
+      <kendo-grid-column field="puestoTipo.nombreCompleto" width="100" title="Puesto tipo" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="nombre" title="Denominación" width="100" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="nombre" title="Denominación" width="160" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="tipoVinculo.nombre" title="TP" width="100" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="tipoVinculo.nombre" title="TP" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="catalogo.nombre" title="Catálogo" width="100" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="catalogo.nombre" title="Catálogo" width="110" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="adscripcion.nombre" title="Adscripción administración" width="100"
+        media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="adscripcion.nombre" title="Adscripción administración" width="80"
-      media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="grupo1Id" title="G1" media="(min-width: 600px)">
+      </kendo-grid-column>
+      <kendo-grid-column field="grupo2Id" title="G2" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="grupo1Id" title="G1" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
-    <kendo-grid-column field="grupo2Id" title="G2" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="escala.nombre" title="Escala" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="escala.nombre" title="Escala" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" width="80" media="(min-width: 600px)">
+      </kendo-grid-column>
+      <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="80" media="(min-width: 600px)">
+      </kendo-grid-column>
+      <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" filter='numeric' media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
-    <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
-    <kendo-grid-column field="grupo1Importe" title="Grupo (€)" width="80" filter='numeric'media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="complementoDestinoId" title="ND" width="80" filter='numeric' media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="complementoDestinoId" title="ND" width="80" filter='numeric'media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="80" filter='numeric'
+        media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" width="80" filter='numeric'
-      media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="complementoEspecificoId" title="CE" width="80" filter='numeric'
+        media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="complementoEspecificoId" title="CE" width="80" filter='numeric'
-      media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" width="80" filter='numeric'
+        media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" width="80" filter='numeric'
-      media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="dotaciones" title="Dot" width="80" filter='numeric' media="(min-width: 600px)">
+      </kendo-grid-column>
+      <kendo-grid-column field="ocupantes" title="Ocupantes" width="80" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="dotaciones" title="Dot" width="80" filter='numeric'media="(min-width: 600px)">
-    </kendo-grid-column>
-    <kendo-grid-column field="ocupantes" title="Ocupantes" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="vacantes" title="Vacantes" width="80" media="(min-width: 600px)">
+      </kendo-grid-column>
 
-    <kendo-grid-column field="vacantes" title="Vacantes" width="80" media="(min-width: 600px)">
-    </kendo-grid-column>
+      <kendo-grid-column field="dotado" title="Dotado" width="80" filter="boolean" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.dotado" disabled />
+        </ng-template>
+      </kendo-grid-column>
 
-    <kendo-grid-column field="dotado" title="Dotado" width="80" filter="boolean" media="(min-width: 600px)">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.Dotado" />
-      </ng-template>
-    </kendo-grid-column>
+      <kendo-grid-column field="singularizado" title="PS" width="80" filter="boolean" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.singularizado" />
+        </ng-template>
+      </kendo-grid-column>
 
-    <kendo-grid-column field="singularizado" title="PS" width="80" filter="boolean" media="(min-width: 600px)">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.singularizado" />
-      </ng-template>
-    </kendo-grid-column>
+      <kendo-grid-column field="reservadoNacionales" title="RN" width="80" filter="boolean" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.reservadoNacionales" />
+        </ng-template>
+      </kendo-grid-column>
 
-    <kendo-grid-column field="reservadoNacionales" title="RN" width="80" filter="boolean" media="(min-width: 600px)">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.reservadoNacionales" />
-      </ng-template>
-    </kendo-grid-column>
+      <kendo-grid-column field="disponibilidadPlena" title="PD" width="80" filter="boolean" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.disponibilidadPlena" />
+        </ng-template>
+      </kendo-grid-column>
 
-    <kendo-grid-column field="disponibilidadPlena" title="PD" width="80" filter="boolean" media="(min-width: 600px)">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.disponibilidadPlena" />
-      </ng-template>
-    </kendo-grid-column>
-
-    <kendo-grid-column field="personaDeConfianza" title="PC" width="80" filter=" boolean" media="(min-width: 600px)">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <input type="checkbox" [checked]="dataItem.PC" />
-      </ng-template>
-    </kendo-grid-column> -->
+      <kendo-grid-column field="personaDeConfianza" title="PC" width="80" filter=" boolean" media="(min-width: 600px)">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <input type="checkbox" [checked]="dataItem.personaDeConfianza" />
+        </ng-template>
+      </kendo-grid-column>
 
     </kendo-grid>
   </div>
