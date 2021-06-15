@@ -65,3 +65,8 @@ body {
   color: #ffffff;
   background-color: $primaryColor;
 }
+
+.k-grid td.k-state-selected,
+.k-grid tr.k-state-selected>td {
+  background-color: $primaryColorHover !important;
+}

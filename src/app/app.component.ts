@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import { GridDataResult, SelectableSettings } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faThList, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -40,13 +40,15 @@ export class AppComponent implements OnInit {
   public formGroup: FormGroup;
   private editedRowIndex: number;
   private popupRef: PopupRef;
-
+  public selectableSettings: SelectableSettings;
 
   ngOnInit() {
     this.loadDatos();
   }
 
   constructor(private appService: AppService, private popupService: PopupService, private formBuilder: FormBuilder) {
+    this.setSelectableSettings();
+
   }
 
   private loadDatos(): void {
@@ -195,6 +197,14 @@ export class AppComponent implements OnInit {
         content: template,
       });
     }
+  }
+
+  public setSelectableSettings(): void {
+    this.selectableSettings = {
+      checkboxOnly: false,
+      mode: "single",
+      drag: false
+    };
   }
 }
 

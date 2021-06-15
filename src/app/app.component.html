@@ -3,7 +3,8 @@
       [sortable]="{mode: 'multiple'}" [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip" [pageable]="true"
       [groupable]="groupable" filterable="menu" [filter]="state.filter" enabled="groupable" [group]="state.group"
       (dataStateChange)="dataStateChange($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
-      (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)">
+      (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)"
+      [selectable]="selectableSettings">
       <!-- (cellClick)="cellClickHandler($event)"
       (cellClose)="cellCloseHandler($event)" -->
       <kendo-grid-messages [groupPanelEmpty]="'Arrastra las columnas para agrupar aquí'" [filter]="'Filtro'"
