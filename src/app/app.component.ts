@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
 import { GridDataResult, SelectableSettings } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faThList, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faTag, faThList, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
@@ -14,6 +14,7 @@ import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public icTag = faTag;
   public icDesagrupCol = faObjectUngroup;
   public icEdit = faPencilAlt;
   public icCheck = faCheck;

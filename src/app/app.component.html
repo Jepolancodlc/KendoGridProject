@@ -1,10 +1,10 @@
   <div class="center" media="(min-width: 600px)">
-    <kendo-grid [data]="gridView" [resizable]="true" [reorderable]="true" [style.height.%]="100"
-      [sortable]="{mode: 'multiple'}" [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip" [pageable]="true"
-      [groupable]="groupable" filterable="menu" [filter]="state.filter" enabled="groupable" [group]="state.group"
-      (dataStateChange)="dataStateChange($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
-      (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)"
-      [selectable]="selectableSettings">
+    <kendo-grid [data]="gridView" [columnMenu]="{filter: true, sort: true, columnChooser: false }" [reorderable]="true"
+      [style.height.%]="100" [sortable]="true" [sort]="state.sort" [pageSize]="state.take" [skip]="state.skip"
+      [pageable]="true" [groupable]="groupable" filterable="false" [filter]="state.filter" enabled="groupable"
+      [group]="state.group" [selectable]="selectableSettings" (dataStateChange)="dataStateChange($event)"
+      (edit)="editHandler($event)" (cancel)="cancelHandler($event)" (save)="saveHandler($event)"
+      (remove)="removeHandler($event)" (add)="addHandler($event)">
 
       <kendo-grid-messages [groupPanelEmpty]="'Arrastra las columnas para agrupar aquí'" [filter]="'Filtro'"
         [filterAfterOperator]="'Es superior a'" [sortAscending]="'Ordenación ascendente'"
@@ -129,77 +129,144 @@
 
       <kendo-grid-column field="puesto.puestoId" title="Código" filter='numeric' media="(min-width: 600px)" width="110"
         editor="numeric">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Código"> Código </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="puestoIdOficial" title="Código oficial" filter='numeric' media="(min-width: 600px)"
         width="110" editor="numeric">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Código oficial"> Código oficial </div>
+        </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo" media="(min-width: 600px)" width="110">
+      <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo" media="(min-width: 600px)" width="70">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Puesto tipo">
+            <fa-icon [icon]="icTag"></fa-icon>
+          </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="nombre" title="Denominación" media="(min-width: 600px)" width="300" height="90">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Denominación"> Denominación </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="tipoVinculo.nombre" title="TP" media="(min-width: 600px)" width="150">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Tipo de personal"> TP </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="catalogo.nombre" title="Catálogo" media="(min-width: 600px)" width="150" width="150">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Catálogo"> Catálogo </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="adscripcion.nombre" title="Adscripción administración" media="(min-width: 600px)"
         width="200">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Adscripción a la administración"> Adscripción administración </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="grupo1Id" title="G1" media="(min-width: 600px)" width="88">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Grupo 1"> G1 </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="grupo2Id" title="G2" media="(min-width: 600px)" width="88">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Grupo 2"> G2 </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="escala.nombre" title="Escala" media="(min-width: 600px)" width="200">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Escala"> Escala </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="cuerpo.nombre" title="Cuerpo" media="(min-width: 600px)" width="150">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Cuerpo"> Cuerpo </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="formaProvision.nombre" title="Forma provisión" media="(min-width: 600px)" width="150">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Forma provisión"> Forma provisión </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="grupo1Importe" title="Grupo (€)" filter='numeric' editor="numeric" width="120"
         media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Importe anual del grupo 1"> Grupo (€) </div>
+        </ng-template>
       </kendo-grid-column>
 
 
       <kendo-grid-column field="complementoDestinoId" title="ND" filter='numeric' editor="numeric" width="88"
         media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Nivel complemento destino"> ND </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="complementoDestinoImporte" title="ND (€)" filter='numeric' editor="numeric" width="110"
         media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Importe anual del complemento destino"> ND (€) </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="complementoEspecificoId" title="CE" filter='numeric' editor="numeric" width="88"
         media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Código del complemento específico "> CE </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="complementoEspecificoImporte" title="CE (€)" filter='numeric' editor="numeric"
         width="110" media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Importe anual del complemento específico"> CE (€) </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="dotaciones" title="Dot" filter='numeric' editor="numeric" media="(min-width: 600px)"
         width="88">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Dotaciones"> Dot </div>
+        </ng-template>
       </kendo-grid-column>
+
       <kendo-grid-column field="ocupantes" title="Ocupantes" filter='numeric' editor="numeric" width="88"
         media="(min-width: 600px)">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Número de ocupantes"> Ocupantes </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="vacantes" title="Vacantes" filter='numeric' editor="numeric" media="(min-width: 600px)"
         width="88">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Número de dotaciones - Número de ocupantes"> Vacantes </div>
+        </ng-template>
       </kendo-grid-column>
 
       <kendo-grid-column field="dotado" title="Dotado" filter="boolean" media="(min-width: 600px)" editor="boolean"
         width="80">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Dotado económicamente"> Dotado </div>
+        </ng-template>
+
         <ng-template kendoGridCellTemplate let-dataItem>
           <input type="checkbox" [checked]="dataItem.dotado" disabled />
         </ng-template>
@@ -207,6 +274,10 @@
 
       <kendo-grid-column field="singularizado" title="PS" filter="boolean" media="(min-width: 600px)" editor="boolean"
         width="80">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Puesto singularizado"> PS </div>
+        </ng-template>
+
         <ng-template kendoGridCellTemplate let-dataItem>
           <input type="checkbox" [checked]="dataItem.singularizado" disabled />
         </ng-template>
@@ -214,6 +285,10 @@
 
       <kendo-grid-column field="reservadoNacionales" title="RN" filter="boolean" media="(min-width: 600px)" width="80"
         editor="boolean">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Reservado nacionales"> RN </div>
+        </ng-template>
+
         <ng-template kendoGridCellTemplate let-dataItem>
           <input type="checkbox" [checked]="dataItem.reservadoNacionales" disabled />
         </ng-template>
@@ -221,6 +296,10 @@
 
       <kendo-grid-column field="disponibilidadPlena" title="PD" filter="boolean" media="(min-width: 600px)" width="80"
         editor="boolean">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Plena disponibilidad"> PD </div>
+        </ng-template>
+
         <ng-template kendoGridCellTemplate let-dataItem>
           <input type="checkbox" [checked]="dataItem.disponibilidadPlena" disabled />
         </ng-template>
@@ -228,6 +307,10 @@
 
       <kendo-grid-column field="personaDeConfianza" title="PC" filter="boolean" media="(min-width: 600px)" width="80"
         editor="boolean">
+        <ng-template kendoGridHeaderTemplate let-column>
+          <div class="juan" matTooltip="Persona de confianza"> PC </div>
+        </ng-template>
+
         <ng-template kendoGridCellTemplate let-dataItem>
           <input type="checkbox" [checked]="dataItem.personaDeConfianza" disabled />
         </ng-template>
