@@ -5,7 +5,7 @@ import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faTag, faThLis
 import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 
 @Component({
@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
 
   constructor(private appService: AppService, private popupService: PopupService, private formBuilder: FormBuilder) {
     this.setSelectableSettings();
-
   }
 
   private loadDatos(): void {
@@ -67,45 +66,6 @@ export class AppComponent implements OnInit {
     this.state = state;
     this.loadDatos();
   }
-
-  //Grouping Methods
-  public isGroupable(): void {
-    if (this.groupable === false) {
-      this.state.group.splice(0, this.state.group.length)
-    }
-    this.groupable = !this.groupable;
-  }
-
-  //Global Search
-  public onFilter(inputValue: string): void {
-    this.gridView = process(this.datos, {
-      filter: {
-        logic: "or",
-        filters: [
-          { field: "id", operator: "contains", value: inputValue },
-          { field: "puestoIdOficial", operator: "contains", value: inputValue },
-          { field: "puestoTipo.nombreCompleto", operator: "contains", value: inputValue },
-          { field: "nombre", operator: "contains", value: inputValue },
-
-        ],
-      },
-    });
-  }
-
-  public rowCallback = (context: RowClassArgs) => {
-    switch (context.dataItem.tipoVinculo?.tipoVinculoId) {
-      case 'F':
-        return { cyan: true };
-      case 'E':
-        return { lila: true };
-      case 'L':
-        return { lila: true };
-      case 'A':
-        return { colorsito: true };
-      default:
-        return {};
-    }
-  };
 
   //CRUD
   public createFormGroup(dataItem: Puesto): FormGroup {
@@ -202,8 +162,45 @@ export class AppComponent implements OnInit {
     this.editedRowIndex = undefined;
     this.formGroup = undefined;
   }
+  //-//
 
-  //
+  public isGroupable(): void {
+    if (this.groupable === false) {
+      this.state.group.splice(0, this.state.group.length)
+    }
+    this.groupable = !this.groupable;
+  }
+
+  public onFilter(inputValue: string): void {
+    this.gridView = process(this.datos, {
+      filter: {
+        logic: "or",
+        filters: [
+          { field: "id", operator: "contains", value: inputValue },
+          { field: "puestoIdOficial", operator: "contains", value: inputValue },
+          { field: "puestoTipo.nombreCompleto", operator: "contains", value: inputValue },
+          { field: "nombre", operator: "contains", value: inputValue },
+
+        ],
+      },
+    });
+  }
+
+  public rowCallback = (context: RowClassArgs) => {
+    switch (context.dataItem.tipoVinculo?.tipoVinculoId) {
+      case 'F':
+        return { cyan: true };
+      case 'E':
+        return { lila: true };
+      case 'L':
+        return { lila: true };
+      case 'A':
+        return { colorsito: true };
+      default:
+        return {};
+    }
+  };
+
   public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
     if (this.popupRef) {
       this.popupRef.close();
