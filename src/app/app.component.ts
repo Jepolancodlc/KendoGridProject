@@ -33,7 +33,10 @@ export class AppComponent implements OnInit {
     skip: 0,
     take: 15,
     group: [],
-
+    sort: [{
+      field: "puesto.puestoId",
+      dir: "asc"
+    }],
   };
   public groupable: boolean = false;
   public commonFilter = "";
