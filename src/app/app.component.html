@@ -4,7 +4,7 @@
       [pageable]="true" [groupable]="groupable" filterable="false" [filter]="state.filter" enabled="groupable"
       [group]="state.group" [selectable]="selectableSettings" (dataStateChange)="dataStateChange($event)"
       (edit)="editHandler($event)" (cancel)="cancelHandler($event)" (save)="saveHandler($event)"
-      (remove)="removeHandler($event)" (add)="addHandler($event)">
+      (remove)="removeHandler($event)" (add)="addHandler($event)" [rowClass]="rowCallback">
 
       <kendo-grid-messages [groupPanelEmpty]="'Arrastra las columnas para agrupar aquí'" [filter]="'Filtro'"
         [filterAfterOperator]="'Es superior a'" [sortAscending]="'Ordenación ascendente'"
@@ -141,11 +141,14 @@
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="puestoTipo.nombreCompleto" title="Puesto tipo" media="(min-width: 600px)" width="70">
+      <kendo-grid-column field="puestoTipo.nombre" title="Puesto tipo" media="(min-width: 600px)" width="70">
         <ng-template kendoGridHeaderTemplate let-column>
           <div class="juan" matTooltip="Puesto tipo">
             <fa-icon [icon]="icTag"></fa-icon>
           </div>
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-dataItem>
+
         </ng-template>
       </kendo-grid-column>
 
@@ -155,7 +158,8 @@
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="tipoVinculo.nombre" title="TP" media="(min-width: 600px)" width="150">
+      <kendo-grid-column field="tipoVinculo.tipoVinculoId" title="TP" media="(min-width: 600px)" width="80"
+        [class]="{ codeColumn: true }">
         <ng-template kendoGridHeaderTemplate let-column>
           <div class="juan" matTooltip="Tipo de personal"> TP </div>
         </ng-template>

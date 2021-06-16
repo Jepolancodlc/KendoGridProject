@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
-import { GridDataResult, SelectableSettings } from '@progress/kendo-angular-grid';
+import { GridDataResult, RowClassArgs, SelectableSettings } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faTag, faThList, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
 import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -92,7 +92,20 @@ export class AppComponent implements OnInit {
     });
   }
 
-
+  public rowCallback = (context: RowClassArgs) => {
+    switch (context.dataItem.tipoVinculo?.tipoVinculoId) {
+      case 'F':
+        return { cyan: true };
+      case 'E':
+        return { lila: true };
+      case 'L':
+        return { lila: true };
+      case 'A':
+        return { colorsito: true };
+      default:
+        return {};
+    }
+  };
 
   //CRUD
   public createFormGroup(dataItem: Puesto): FormGroup {

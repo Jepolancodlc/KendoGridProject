@@ -1,6 +1,5 @@
 $primaryColor: #005cb4;
-$primaryColorHover: #005db442;
-$primaryColorHoverLight: #005db410;
+$primaryColorHover: #479ef025;
 
 html,
 body {
@@ -11,6 +10,24 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+//CellColor
+.lila .codeColumn {
+  background-color: rgba(139, 0, 139, .5);
+  color: #ffffff;
+}
+
+.cyan .codeColumn {
+  background-color: rgba(0, 150, 136, .5);
+  color: #ffffff;
+}
+
+.colorsito .codeColumn {
+  background-color: rgba(0, 15, 150, 0.5);
+  color: #ffffff;
+}
+
+//Paginador
 
 .k-pager-numbers .k-link.k-state-selected {
   border-color: $primaryColorHover;
@@ -24,9 +41,10 @@ body {
 
 .k-pager-numbers .k-link:hover {
   color: $primaryColor;
-  background-color: $primaryColorHoverLight;
+  background-color: $primaryColorHover;
 }
 
+//Boton column chooser
 .k-button .k-icon {
   height: 70px;
   width: 40px;
@@ -35,10 +53,7 @@ body {
   padding-top: 13px;
 }
 
-.k-button:hover {
-  background-color: transparent;
-}
-
+//boton APLICAR column chooser
 .k-button.k-primary {
   border-color: $primaryColor;
   background-color: $primaryColor;
@@ -51,6 +66,7 @@ body {
   }
 }
 
+//Botones column chooser
 .k-action-buttons .k-button:not(.k-primary),
 .k-button.k-primary {
   border-radius: 2px;
@@ -59,6 +75,7 @@ body {
   font-weight: normal;
 }
 
+//checkboxs
 .k-checkbox:checked,
 .k-checkbox.k-checked {
   border-color: $primaryColor;
@@ -66,7 +83,29 @@ body {
   background-color: $primaryColor;
 }
 
+//row hover selected
 .k-grid td.k-state-selected,
 .k-grid tr.k-state-selected>td {
   background-color: $primaryColorHover !important;
+}
+
+//Menu sorting selected
+.k-columnmenu-item.k-state-selected {
+  color: #ffffff;
+  background-color: $primaryColor;
+}
+
+//Menu Filter selected
+.k-grid-header .k-grid-filter.k-state-active,
+.k-grid-header .k-header-column-menu.k-state-active,
+.k-grid-header .k-hierarchy-cell .k-icon.k-state-active {
+  color: #ffffff;
+  background-color: $primaryColor;
+}
+
+//Flecha sorting
+.k-grid-header .k-i-sort-asc-sm,
+.k-grid-header .k-i-sort-desc-sm,
+.k-grid-header .k-sort-order {
+  color: $primaryColor;
 }
