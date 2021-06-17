@@ -7,10 +7,6 @@ $primaryColor: #005CB4;
   height: 83%
 }
 
-.btnAdd {
-  font-size: 22px !important;
-}
-
 .btnAdd,
 .gridHeader button {
   cursor: pointer;
@@ -20,29 +16,6 @@ $primaryColor: #005CB4;
   width: 40px;
   font-size: 18px;
   color: rgb(74, 72, 72);
-}
-
-
-.containerAddBtns {
-  width: 200px;
-  height: 100px;
-
-  -webkit-box-shadow: 0px 10px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 0px 10px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-
-  button {
-    width: 100%;
-    height: 50%;
-    border-color: transparent;
-
-    .icBtn {
-      font-size: 18px;
-      color: grey;
-      padding-right: 10px;
-    }
-  }
 }
 
 .search-box {

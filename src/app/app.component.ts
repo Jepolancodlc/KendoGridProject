@@ -201,18 +201,6 @@ export class AppComponent implements OnInit {
     }
   };
 
-  public togglePopup(anchor: ElementRef, template: TemplateRef<any>) {
-    if (this.popupRef) {
-      this.popupRef.close();
-      this.popupRef = null;
-    } else {
-      this.popupRef = this.popupService.open({
-        anchor: anchor,
-        content: template,
-      });
-    }
-  }
-
   public setSelectableSettings(): void {
     this.selectableSettings = {
       checkboxOnly: false,

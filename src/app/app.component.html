@@ -25,28 +25,20 @@
 
 
       <ng-template kendoGridToolbarTemplate>
-        <div>
-          <button matTooltip="Nuevo puesto" class="btnAdd" #newPuesto (click)="togglePopup(newPuesto, newPuestoTemp)">
-            <fa-icon [icon]="icAddPuesto"></fa-icon>
+
+        <button mat-button [matMenuTriggerFor]="menu" look="flat">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button kendoGridAddCommand look="flat">
+            <mat-icon>playlist_add</mat-icon> Nuevo desde lista
+          </button><br>
+          <button kendoGridAddCommand look="flat">
+            <mat-icon>add</mat-icon> Nuevo desde ficha
           </button>
-
-          <ng-template #newPuestoTemp>
-            <div class="containerAddBtns">
-              <button kendoGridAddCommand look="flat">
-                <fa-icon class="icBtn" [icon]="icList"></fa-icon>
-                Nuevo desde lista
-              </button>
-
-              <button kendoGridAddCommand look="flat">
-                <fa-icon class="icBtn" [icon]="icPlus"></fa-icon>
-                Nuevo desde Ficha
-              </button>
-            </div>
-          </ng-template>
-        </div>
+        </mat-menu>
 
         <kendo-grid-spacer></kendo-grid-spacer>
-
 
         <div class="gridHeader">
           <kendo-textbox class="search-box" placeholder="Buscar puesto ..." kendoTextBox
@@ -81,6 +73,21 @@
             <tr>
               <td>{{ dataItem.puestoId }}</td>
               <td colspan="3"> {{ dataItem.nombre }} </td>
+              <td>
+                <button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vertical</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item kendoGridEditCommand look="flat">
+                    <fa-icon [icon]="icEdit"></fa-icon>
+                    EDITAR
+                  </button>
+                  <button mat-menu-item kendoGridRemoveCommand look="flat">
+                    <fa-icon [icon]="icRemove"></fa-icon>
+                    BORRAR
+                  </button>
+                </mat-menu>
+              </td>
             </tr>
             <tr>
               <td colspan="4">
