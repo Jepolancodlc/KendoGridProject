@@ -26,7 +26,7 @@
 
       <ng-template kendoGridToolbarTemplate>
 
-        <button mat-button [matMenuTriggerFor]="menu" look="flat">
+        <button mat-button [matMenuTriggerFor]="menu" class="menu">
           <mat-icon>add_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -46,12 +46,12 @@
           </kendo-textbox>
 
           <button matTooltip="Buscar puesto" (click)="buscador = !buscador">
-            <fa-icon [icon]="icSearch"></fa-icon>
+            <mat-icon>search</mat-icon>
           </button>
 
-          <button matTooltip="Agrupar columnas" (click)="isGroupable()" look="flat">
-            <fa-icon [icon]="icDesagrupCol" *ngIf="groupable"></fa-icon>
-            <fa-icon [icon]="icAgruparCol" *ngIf="!groupable"></fa-icon>
+          <button (click)="isGroupable()" look="flat">
+            <mat-icon matTooltip="Agrupar columnas" *ngIf="!groupable"> layers</mat-icon>
+            <mat-icon matTooltip="Desgrupar columnas" *ngIf="groupable"> layers_clear</mat-icon>
           </button>
 
           <button matTooltip=" Exportar a excel" kendoGridExcelCommand look="flat">
@@ -69,21 +69,21 @@
       <!-- Inicio Columna responsive  -->
       <kendo-grid-column media="(max-width: 600px)" title="Puestos" width="150">
         <ng-template kendoGridCellTemplate let-dataItem>
-          <table>
+          <table class="tbResponsive">
             <tr>
-              <td>{{ dataItem.puestoId }}</td>
-              <td colspan="3"> {{ dataItem.nombre }} </td>
-              <td>
-                <button mat-button [matMenuTriggerFor]="menu">
+              <td id="td1">{{ dataItem.puestoId }}</td>
+              <td id="td2"> {{ dataItem.nombre }} </td>
+              <td id="td3">
+                <button mat-button [matMenuTriggerFor]="menu" class="menu">
                   <mat-icon>more_vertical</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item kendoGridEditCommand look="flat">
-                    <fa-icon [icon]="icEdit"></fa-icon>
+                    <mat-icon>create</mat-icon>
                     EDITAR
                   </button>
                   <button mat-menu-item kendoGridRemoveCommand look="flat">
-                    <fa-icon [icon]="icRemove"></fa-icon>
+                    <mat-icon>delete</mat-icon>
                     BORRAR
                   </button>
                 </mat-menu>
@@ -91,9 +91,9 @@
             </tr>
             <tr>
               <td colspan="4">
-                {{ dataItem.tipoVinculo?.nombre }} ||
+                {{ dataItem.tipoVinculo?.nombre }}
 
-                {{ dataItem.grupo1Id }} ||
+                {{ dataItem.grupo1Id }}
 
                 {{ dataItem.grupo2Id }}
               </td>
@@ -108,23 +108,23 @@
       </kendo-grid-column>
       <!-- Final Columna responsive  -->
 
-      <kendo-grid-command-column width="100" media="(min-width: 600px)" [reorderable]="false" [locked]="true">
+      <kendo-grid-command-column width="117" media="(min-width: 600px)" [reorderable]="false" [locked]="true">
         <ng-template kendoGridCellTemplate let-isNew="isNew">
 
           <button kendoGridEditCommand look="flat" matTooltip="Editar puesto">
-            <fa-icon [icon]="icEdit"></fa-icon>
+            <mat-icon class="btnCommand">create</mat-icon>
           </button>
 
           <button kendoGridRemoveCommand look="flat" matTooltip="Eliminar puesto">
-            <fa-icon [icon]="icRemove"></fa-icon>
+            <mat-icon class="btnCommand">delete</mat-icon>
           </button>
 
-          <button kendoGridSaveCommand look="flat">
-            <fa-icon [icon]="icCheck" matTooltip="Guardar"></fa-icon>
+          <button kendoGridSaveCommand look="flat" matTooltip="Guardar">
+            <mat-icon class="btnCommand">done</mat-icon>
           </button>
 
-          <button kendoGridCancelCommand look="flat">
-            <fa-icon [icon]="icCancelar" matTooltip="Cancelar"></fa-icon>
+          <button kendoGridCancelCommand look="flat" matTooltip="Cancelar">
+            <mat-icon class="btnCommand">replay</mat-icon>
           </button>
 
         </ng-template>
@@ -142,7 +142,7 @@
       </kendo-grid-column>
 
       <kendo-grid-column field="puestoIdOficial" title="Código oficial" filter='numeric' media="(min-width: 600px)"
-        width="110" editor="numeric">
+        width="120" editor="numeric">
         <ng-template kendoGridHeaderTemplate let-column>
           <div matTooltip="Código oficial"> Código oficial </div>
         </ng-template>

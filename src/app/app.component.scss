@@ -7,7 +7,14 @@ $primaryColor: #005CB4;
   height: 83%
 }
 
-.btnAdd,
+.menu {
+  border-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgb(74, 72, 72);
+
+}
+
 .gridHeader button {
   cursor: pointer;
   background-color: transparent;
@@ -24,10 +31,23 @@ $primaryColor: #005CB4;
   height: 34px;
 }
 
-.k-grid-edit-command,
-.k-grid-remove-command,
-.k-grid-save-command,
-.k-grid-cancel-command {
+.btnCommand {
   color: $primaryColor;
   background-color: transparent;
+  font-size: 25px;
+  display: inline-block;
+}
+
+.tbResponsive {
+  #td1 {
+    width: 20%;
+  }
+
+  #td2 {
+    width: 72%;
+  }
+
+  #td3 {
+    width: 8%;
+  }
 }

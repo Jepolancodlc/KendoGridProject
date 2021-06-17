@@ -1,12 +1,10 @@
-import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GridDataResult, RowClassArgs, SelectableSettings } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
-import { faCheck, faObjectUngroup, faPencilAlt, faPlus, faSearch, faTag, faThList, faTrash, faUndo } from '@fortawesome/free-solid-svg-icons';
-import { faObjectGroup, faGripLinesVertical, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faFileExport, faTag } from '@fortawesome/free-solid-svg-icons';
 import { AppService } from './app.service';
 import { Puesto } from './model-puestos';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 
 @Component({
   selector: 'app-root',
@@ -15,18 +13,7 @@ import { PopupService, PopupRef } from "@progress/kendo-angular-popup";
 })
 export class AppComponent implements OnInit {
   public icTag = faTag;
-  public icDesagrupCol = faObjectUngroup;
-  public icEdit = faPencilAlt;
-  public icCheck = faCheck;
-  public icCancelar = faUndo;
-  public icRemove = faTrash;
-  public icList = faThList;
-  public icSearch = faSearch;
-  public icPlus = faPlus;
   public icFileExp = faFileExport;
-  public icShowCol = faGripLinesVertical;
-  public icAgruparCol = faObjectGroup;
-  public icAddPuesto = faPlusCircle;
 
   public gridView: GridDataResult;
   public datos: Puesto[];
@@ -43,14 +30,13 @@ export class AppComponent implements OnInit {
   public commonFilter = "";
   public formGroup: FormGroup;
   private editedRowIndex: number;
-  private popupRef: PopupRef;
   public selectableSettings: SelectableSettings;
 
   ngOnInit() {
     this.loadDatos();
   }
 
-  constructor(private appService: AppService, private popupService: PopupService, private formBuilder: FormBuilder) {
+  constructor(private appService: AppService, private formBuilder: FormBuilder) {
     this.setSelectableSettings();
   }
 
