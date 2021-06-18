@@ -2,7 +2,7 @@
     <kendo-grid [data]="gridView" [columnMenu]="{filter: true, sort: true, columnChooser: false }" [reorderable]="true"
       [resizable]="true" [style.height.%]="100" [sortable]="true" [sort]="state.sort" [pageSize]="state.take"
       [skip]="state.skip" [pageable]="true" [groupable]="groupable" filterable="false" [filter]="state.filter"
-      enabled="groupable" [group]="state.group" [selectable]="selectableSettings"
+      enabled="groupable" [group]="state.group" [selectable]="selectableSettings" [loading]="loading"
       (dataStateChange)="dataStateChange($event)" (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
       (save)="saveHandler($event)" (remove)="removeHandler($event)" (add)="addHandler($event)" [rowClass]="rowCallback">
 

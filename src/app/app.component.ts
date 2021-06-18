@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   public formGroup: FormGroup;
   private editedRowIndex: number;
   public selectableSettings: SelectableSettings;
+  public loading: boolean = true;
 
   ngOnInit() {
     this.loadDatos();
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
       .subscribe((data: any) => {
         this.datos = data;
         this.gridView = process(this.datos, this.state)
+        this.loading = false;
       });
   }
 
@@ -68,7 +70,7 @@ export class AppComponent implements OnInit {
       }),
       nombre: new FormControl(item.denominacion),
       tipoVinculo: new FormGroup({
-        nombre: new FormControl(item?.tipoVinculo?.nombre)
+        tipoVinculoId: new FormControl(item?.tipoVinculo?.nombre)
       }),
 
       catalogo: new FormGroup({
@@ -135,7 +137,9 @@ export class AppComponent implements OnInit {
       this.appService.put(puesto).subscribe();
     }
     sender.closeRow(rowIndex);
-    this.loadDatos();
+    this.loading = true;
+    setTimeout(() => this.loadDatos(), 1000);
+
   }
 
   public removeHandler({ dataItem }) {
