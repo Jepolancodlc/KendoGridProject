@@ -10,8 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,15 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     InputsModule,
     MatMenuModule,
-    MatIconModule
+    MatCardModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    FlexLayoutModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
