@@ -55,22 +55,21 @@ export class AppComponent implements OnInit {
     this.loadDatos();
   }
 
-  //CRUD
   public createFormGroup(dataItem: Puesto): FormGroup {
     const item = dataItem || new Puesto();
 
     return this.formGroup = this.formBuilder.group({
       id: new FormControl(item.id),
       puesto: new FormGroup({
-        puestoId: new FormControl(item?.codigo?.id),
+        puestoId: new FormControl(item?.puesto?.puestoId),
       }),
-      puestoIdOficial: new FormControl(item.codOficial),
+      puestoIdOficial: new FormControl(item.puestoIdOficial),
       puestoTipo: new FormGroup({
         nombre: new FormControl(item?.puestoTipo?.nombre)
       }),
-      nombre: new FormControl(item.denominacion),
+      nombre: new FormControl(item.nombre),
       tipoVinculo: new FormGroup({
-        tipoVinculoId: new FormControl(item?.tipoVinculo?.nombre)
+        tipoVinculoId: new FormControl(item?.tipoVinculo?.tipoVinculoId)
       }),
 
       catalogo: new FormGroup({
@@ -114,14 +113,12 @@ export class AppComponent implements OnInit {
     this.formGroup = this.createFormGroup(dataItem);
     this.editedRowIndex = rowIndex;
     sender.editRow(rowIndex, this.formGroup);
-    this.loadDatos();
   }
 
   public addHandler({ sender }) {
     this.closeEditor(sender);
     this.formGroup = sender.addRow(this.createFormGroup(new Puesto()));
     sender.addRow(this.formGroup);
-    this.loadDatos();
   }
 
   public cancelHandler({ sender, rowIndex }) {
@@ -129,22 +126,38 @@ export class AppComponent implements OnInit {
   }
 
   public saveHandler({ sender, rowIndex, formGroup, isNew }) {
+    this.loading = true;
     const puesto: Puesto = formGroup.value;
 
     if (isNew) {
-      this.appService.post(puesto).subscribe();
+      this.appService.post(puesto).subscribe(
+        () => {
+          this.loadDatos()
+
+          this.loading = false;
+        }, (err) => {
+          console.error(err);
+          this.loading = false;
+
+        });
     } else {
-      this.appService.put(puesto).subscribe();
+      this.appService.put(puesto).subscribe(() => {
+        this.loadDatos()
+
+        this.loading = false;
+      }, (err) => {
+        console.error(err);
+        this.loading = false;
+
+      });
     }
     sender.closeRow(rowIndex);
-    this.loading = true;
-    setTimeout(() => this.loadDatos(), 1000);
-
   }
 
   public removeHandler({ dataItem }) {
-    this.appService.delete(dataItem).subscribe();
-    this.loadDatos();
+    this.appService.delete(dataItem).subscribe(() => {
+      this.loadDatos();
+    });
   }
 
   private closeEditor(grid, rowIndex = this.editedRowIndex) {
@@ -152,7 +165,6 @@ export class AppComponent implements OnInit {
     this.editedRowIndex = undefined;
     this.formGroup = undefined;
   }
-  //-//
 
   public isGroupable(): void {
     if (this.groupable === false) {
@@ -166,7 +178,6 @@ export class AppComponent implements OnInit {
       filter: {
         logic: "or",
         filters: [
-          { field: "id", operator: "contains", value: inputValue },
           { field: "puestoIdOficial", operator: "contains", value: inputValue },
           { field: "puestoTipo.nombreCompleto", operator: "contains", value: inputValue },
           { field: "nombre", operator: "contains", value: inputValue },
@@ -191,7 +202,7 @@ export class AppComponent implements OnInit {
     }
   };
 
-  public setSelectableSettings(): void {
+  private setSelectableSettings(): void {
     this.selectableSettings = {
       checkboxOnly: false,
       mode: "single",

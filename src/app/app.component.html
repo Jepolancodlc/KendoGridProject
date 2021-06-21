@@ -78,7 +78,7 @@
               </tr>
               <tr>
                 <td>
-                  {{ dataItem.tipoVinculo?.nombre }}
+                  {{ dataItem.tipoVinculo?.tipoVinculoId }}
                 </td>
                 <td>
                   {{ dataItem.grupo1Id }}
@@ -115,7 +115,7 @@
 
         <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-formGroup="formGroup">
           <mat-card>
-
+            {{ dataItem.nombre}}
             <mat-card-content>
 
               <mat-form-field appearance="outline">

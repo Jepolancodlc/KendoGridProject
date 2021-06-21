@@ -2,10 +2,10 @@ import { Adscripcion, Catalogo, CodigoPuesto, Cuerpo, Escala, FormaProvision, Pu
 
 export class Puesto {
   public id: number;
-  public codigo: CodigoPuesto;
-  public codOficial: number;
+  public puesto: CodigoPuesto;
+  public puestoIdOficial: number;
   public puestoTipo: PuestoTipo
-  public denominacion: string;
+  public nombre: string;
   public tipoVinculo: Tipovinculo;
   public catalogo: Catalogo;
   public adscripcion: Adscripcion;
